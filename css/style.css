@@ -41,17 +41,20 @@ form {
 
 .input_form {
     box-shadow: -5px 0px  rgb(140, 126, 204);
-    font-size: 30px;
     margin: 10px 15% 10px 15%;
+    padding: 12px 10px 12px 14px;
     width: 65%;
     border-style: hidden;
     cursor: text;
     background-color:  rgb(240, 239, 247);
 }
 
+.input_form:focus{
+    outline: none;
+}
+
 input::placeholder {
     font-size: 15px;
-    padding: 10px;
     opacity: 50%;
 }
 
@@ -64,6 +67,11 @@ button {
     margin: 2rem 3.5rem;
     cursor: pointer;
     font-family: monospace;
+    transition: 100ms;
+}
+
+button:hover {
+    background-color:  rgb(100, 70, 233);
 }
 
 span {
@@ -78,6 +86,11 @@ a {
     font-size: 12px;
     font-family: monospace;
     font-weight: 900;
+    transition: 100ms;
+}
+
+a:hover {
+    color:  rgb(100, 70, 233);
 }
 
 #options_form {
