@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../CSS/style_sistema.css">
+    <link rel="stylesheet" href="../css/style_sistema.css">
     <link rel="icon" type="image/x-icon" href="../assets/sistema.png">
+    <script src="../javascript/options_for_submenus.js"></script>
     <title>Sistema Principal</title>
 </head>
 
@@ -13,19 +14,18 @@
     <header>
         <h1>Empresas Inc.</h1>
         <div class="options_header">
-            <a href="">Licencias</a>
-            <a href="">Monitor</a>
-            <a href="">Administración</a>   
-            <form action="">
+            <button onclick="subm_licencias()">Licencias</button>
+            <button onclick="subm_monitor()">Monitor</button>
+            <button onclick="subm_administracion()">Administración</button>   
+            <form>
                 <span>Admin</span>
                 <label for="Admin"></label>
                 <input class="input_form" type="text" name="" placeholder="Ingrese su búsqueda">
             </form>
         </div>
     </header>
-    <nav>
-        <a href="">Software</a>
-        <a href="">Hardware</a>
+    <nav id="nav">
+        
     </nav>
     <div class="Barra_lateral">
         <div>
@@ -60,12 +60,12 @@
         </div>
         <br>
         <p class="p">Licencias activas:</p>
-        <p class="p">Licencias vencidas:</p>
+        <p id="Parrafo" class="p">Licencias vencidas:</p>
         <div class="table_and_options_table">
             <div class="options_table">
-                <img class="usuario" src="../assets/Ícono_usuario.png">
-                <img class="pantalla" src="../assets/Ícono_pantalla.png">
-                <img class="signo_mas" src="../assets/Ícono_signo_mas.png">
+                <button><img class="usuario" src="../assets/Ícono_usuario.png"></button> 
+                <button><img class="pantalla" src="../assets/Ícono_pantalla.png"></button>
+                <button><img class="signo_mas" src="../assets/Ícono_signo_mas.png"></button>
             </div>
             <div class="table">
                 <table>

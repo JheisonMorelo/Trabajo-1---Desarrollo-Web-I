@@ -20,11 +20,12 @@ h1 {
     padding-top: 100px;
 }
 
-.options_header a{
-    margin: 2rem 1rem 1rem 1rem;
+.options_header button{
+    background-color: rgb(44, 43, 43);
     color: white;
-    text-decoration-line: none;
-    font-size: 13px;
+    border-style: none;
+    cursor: pointer;
+    margin: 0px 10px 0px 10px;
 }
 
 .options_header form {
@@ -52,13 +53,17 @@ form span {
 nav {
     background-color: #636363;
     padding: 12px;
+    height: 20px;
 }
 
-nav a {
+nav button {
     font-size: smaller;
     margin-left: 40px;
     text-decoration-line: none;
+    border-style: none;
+    background-color: #636363;
     color: white;
+    cursor: pointer;
 }
 
 .Barra_lateral{
@@ -144,14 +149,15 @@ p {
     align-items: center;
 }
 
-.usuario, .pantalla {
-    width: 14px;
-    margin-left: 10px;
+.options_table button {
+    width: 3%;
+    background-color: #abb1b1;
+    border-style: none;
 }
 
-.signo_mas {
+.usuario, .pantalla, .signo_mas {
     width: 14px;
-    margin-left: 5px;
+    height: 14px;    
 }
 
 .options_table img:hover {
