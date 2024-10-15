@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/style_sistema.css">
     <link rel="icon" type="image/x-icon" href="../assets/sistema.png">
     <script src="../javascript/options_for_submenus.js"></script>
+    <script src="../javascript/insertion_data_table.js"></script>
     <title>Sistema Principal</title>
 </head>
 
@@ -63,71 +64,22 @@
         <p id="Parrafo" class="p">Licencias vencidas:</p>
         <div class="table_and_options_table">
             <div class="options_table">
-                <button><img class="usuario" src="../assets/Ícono_usuario.png"></button> 
-                <button><img class="pantalla" src="../assets/Ícono_pantalla.png"></button>
-                <button><img class="signo_mas" src="../assets/Ícono_signo_mas.png"></button>
+                <button id="BTNagregar" onclick="agregarDatoIndividual()"><img class="IMGagregar" src="../assets/Ícono_signo_mas.png"></button>
+                <button id="BTNeditar"><img class="IMGeditar" src="../assets/pencil.png"></button> 
+                <button id="BTNeliminar" onclick="eliminarDato()"><img class="IMGeliminar" src="../assets/eliminar.png"></button>
+
+                <button id="BTNagregarMasivamente" onclick="agregarDatosMasivamente()">Agregar todos los datos</button>
             </div>
             <div class="table">
-                <table>
+                <table id="table_data">
                     <tr>
                         <th>Nombre</th>
-                        <th>Estado</th>
-                        <th>Fecha inicio</th>
-                        <th>Fecha fin</th>
+                        <th>Licencia</th>
+                        <th>Fecha Inicio</th>
+                        <th>Fecha Fin</th>
                         <th>Proveedor</th>
-                        <th>Casa matriz</th>
+                        <th>Empresa</th>
                         <th>Responsable</th>
-                        <th>Columna extra</th>
-                    </tr>
-                    <tr>
-                        <td>Vmware</td>
-                        <td>Activa</td>
-                        <td>2022-08-08 08:30</td>
-                        <td>2022-08-08 09:00</td>
-                        <td>CEM</td>
-                        <td>VMware Latinoamérica</td>
-                        <td>Ing. Esteban</td>
-                        <td>Dato extra</td>
-                    </tr>
-                    <tr>
-                        <td>HPE</td>
-                        <td>Activa</td>
-                        <td>2022-08-08 08:30</td>
-                        <td>2022-08-08 09:00</td>
-                        <td>CEM</td>
-                        <td>HPE Europa</td>
-                        <td>Ing. Esteban</td>
-                        <td>Dato extra</td>
-                    </tr>
-                    <tr>
-                        <td>Vmware</td>
-                        <td>Activa</td>
-                        <td>2022-08-08 08:30</td>
-                        <td>2022-08-08 09:00</td>
-                        <td>CEM</td>
-                        <td>VMware</td>
-                        <td>Ing. Esteban</td>
-                        <td>Dato extra</td>
-                    </tr>
-                    <tr>
-                        <td>HPE</td>
-                        <td>Activa</td>
-                        <td>2022-08-08 08:30</td>
-                        <td>2022-08-08 09:00</td>
-                        <td>CEM</td>
-                        <td>HPE Europa</td>
-                        <td>Ing. Esteban</td>
-                        <td>Dato extra</td>
-                    </tr>
-                    <tr>
-                        <td>HPE</td>
-                        <td>Activa</td>
-                        <td>2022-08-08 08:30</td>
-                        <td>2022-08-08 09:00</td>
-                        <td>CEM</td>
-                        <td>HPE Europa</td>
-                        <td>Ing. Esteban</td>
-                        <td>Dato extra</td>
                     </tr>
                 </table>
             </div>
