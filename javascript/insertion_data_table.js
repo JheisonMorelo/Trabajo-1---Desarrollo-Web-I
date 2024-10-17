@@ -133,3 +133,58 @@ function eliminarDato() {
     insertRows(numDatosAgregados);
     insertDataTable(rows);
 }
+
+function editarFila() {
+    // Obtiene todas las filas de la tabla
+    const rows = document.querySelectorAll('#table_data tr');
+    let filaSeleccionada = null;
+
+    // Busca la fila seleccionada
+    for (let i = 1; i < rows.length; i++) { // Comienza desde 1 para evitar el encabezado
+        const checkbox = rows[i].querySelector('input[type="checkbox"]');
+        if (checkbox.checked) {
+            filaSeleccionada = rows[i];
+            break;
+        }
+    }
+
+    // Verifica si se ha seleccionado una fila
+    if (!filaSeleccionada) {
+        alert("Por favor, seleccione una fila para editar.");
+        return;
+    }
+
+    // Obtiene las celdas de la fila
+    const cells = filaSeleccionada.getElementsByTagName("td");
+
+    // Convierte cada celda en un input editable
+    for (let j = 1; j < cells.length; j++) { // Comienza desde 1 para evitar el checkbox
+        const cellValue = cells[j].innerText;
+        cells[j].innerHTML = "<input type='text' value='" +cellValue + "' />";
+    }
+
+    // Agregar un botón para guardar cambios
+    const saveButton = document.createElement("button");
+    saveButton.innerText = "Guardar Cambios";
+    saveButton.onclick = () => guardarCambios(filaSeleccionada);
+    filaSeleccionada.appendChild(saveButton);
+}
+
+function guardarCambios(filaSeleccionada) {
+    // Obtiene las celdas de la fila
+    const cells = filaSeleccionada.getElementsByTagName("td");
+
+    // Actualiza la fila con los nuevos valores
+    for (let j = 1; j < cells.length; j++) { // Comienza desde 1 para evitar el checkbox
+        const input = cells[j].querySelector("input");
+        if (input) {
+            cells[j].innerText = input.value; // Guarda el nuevo valor
+        }
+    }
+
+    // Remueve el botón de guardar
+    const saveButton = filaSeleccionada.querySelector("button");
+    if (saveButton) {
+        saveButton.remove();
+    }
+}
