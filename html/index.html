@@ -18,24 +18,27 @@
             <div id="content">
                 <h2>Login Account</h2>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Autem ullam labore blanditiis consequuntur natus, at officia. Sunt, non vitae fugit pariatur illo debitis amet officia omnis distinctio, illum, recusandae quibusdam!</p>
-                <form action="sistema.html">
+                <form  action="" id="form">
                     <div class="inputsForm">
                         <label for="email"></label>
-                        <input class="input_form" type="email" placeholder="Email ID">
+                        <input class="input_form" placeholder="Email ID" id="email">
                         <label for="Password"></label>
-                        <input class="input_form" type="password" placeholder="Password">
+                        <input class="input_form" type="password" placeholder="Password" id="password">
                     </div>
                     <div id="options_form">
                         <input type="checkbox">
                         <span>Keep me signed in</span>
-                        &nbsp;
                         <a href="">Already a member?</a>
                     </div>
-                    <button>SUBSCRIBE</button>
+                    <button type="submit">SUBSCRIBE</button>
+                    <p class="warnings" id="warnings"></p>
                 </form>
             </div>
         </div>
     </div>
+
+    <script src="../javascript/login.js"></script>
+
 </body>
 
 </html>
