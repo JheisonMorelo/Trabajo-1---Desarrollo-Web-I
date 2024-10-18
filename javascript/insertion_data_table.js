@@ -5,7 +5,7 @@ const data = [
         "FechaInicio": "2022-08-08 08:30",
         "FechaFin": "2022-08-08 09:00",
         "Proveedor": "CEM",
-        "Emppresa": "VMware Latinoamérica",
+        "Empresa": "VMware Latinoamérica",
         "Responsable": "Ing. Esteban"
     },
     {
@@ -14,7 +14,7 @@ const data = [
         "FechaInicio": "2022-08-08 08:30",
         "FechaFin": "2022-08-08 09:00",
         "Proveedor": "CEM",
-        "Emppresa": "HPE Europa",
+        "Empresa": "HPE Europa",
         "Responsable": "Ing. Esteban"
     },
     {
@@ -23,7 +23,7 @@ const data = [
         "FechaInicio": "2022-08-08 08:30",
         "FechaFin": "2022-08-08 09:00",
         "Proveedor": "CEM",
-        "Emppresa": "Vmware",
+        "Empresa": "Vmware",
         "Responsable": "Ing. Esteban"
     },
     {
@@ -32,7 +32,7 @@ const data = [
         "FechaInicio": "2022-08-08 08:30",
         "FechaFin": "2022-08-08 09:00",
         "Proveedor": "CEM",
-        "Emppresa": "HPE Europa",
+        "Empresa": "HPE Europa",
         "Responsable": "Ing. Esteban"
     },
     {
@@ -41,7 +41,7 @@ const data = [
         "FechaInicio": "2022-08-08 08:30",
         "FechaFin": "2022-08-08 09:00",
         "Proveedor": "CEM",
-        "Emppresa": "HPE Europa",
+        "Empresa": "HPE Europa",
         "Responsable": "Ing. Esteban"
     },
     {
@@ -50,7 +50,7 @@ const data = [
         "FechaInicio": "2022-08-08 08:30",
         "FechaFin": "2022-08-08 09:00",
         "Proveedor": "CEM",
-        "Emppresa": "Vmware",
+        "Empresa": "Vmware",
         "Responsable": "Ing. Esteban"
     }
 ];
@@ -59,14 +59,6 @@ let rows;
 let numDatosAgregados = 0;
 let promesa;
 
-function cambiarEstado(i) {
-    if (document.getElementById(i).ariaChecked == "true") {
-        document.getElementById(i).ariaChecked = "false";
-    } else {
-        document.getElementById(i).ariaChecked = "true";
-    }
-}
-
 function insertDataTable(filas) {
     document.getElementById("table_data").innerHTML = filas;
 }
@@ -74,6 +66,7 @@ function insertDataTable(filas) {
 function insertColumns() {
     rows = "";
     rows += "<tr>";
+    rows += "<th id='select'></th>"
     rows += "<th>Nombre</th>";
     rows += "<th>Licencia</th>";
     rows += "<th>Fecha Inicio</th>";
@@ -81,18 +74,20 @@ function insertColumns() {
     rows += "<th>Proveedor</th>";
     rows += "<th>Emppresa</th>";
     rows += "<th>Responsable</th>";
+    rows += "<th id='columnaEditar'>Editar</th>";
     rows += "</tr>";
 }
 
 function insertRows(cantRows) {
     for (let i = 0; i < cantRows; i++) {
-        rows += "<tr id='obj" + i + "'>";
-        rows += "<td> <input type ='checkbox' onclick = 'cambiarEstado(" + i + ")' id = '" + i + "'>" + data[i].Nombre + "</td>";
+        rows += "<tr>";
+        rows += "<td> <input type ='checkbox' id = '" + i + "'></td>";
+        rows += "<td>" + data[i].Nombre + "</td>";
         rows += "<td>" + data[i].Licencia + "</td>";
         rows += "<td>" + data[i].FechaInicio + "</td>";
         rows += "<td>" + data[i].FechaFin + "</td>";
         rows += "<td>" + data[i].Proveedor + "</td>";
-        rows += "<td>" + data[i].Emppresa + "</td>";
+        rows += "<td>" + data[i].Empresa + "</td>";
         rows += "<td>" + data[i].Responsable + "</td>";
         rows += "</tr>";
     }
@@ -123,9 +118,11 @@ function agregarDatoIndividual() {
 }
 
 function eliminarDato() {
-    for (let i = data.length - 1; i >= 0; i--) {
-        if (document.getElementById(i) != null && document.getElementById(i).ariaChecked == "true") {
-            data.splice(i, 1);
+    const filas = document.querySelectorAll('#table_data tr')
+    for (let i = filas.length - 1; i > 0; i--) {
+        const checkbox = filas[i].querySelector('input[type="checkbox"]')
+        if (checkbox.checked) {
+            data.splice(checkbox.getAttribute("id"), 1);
             numDatosAgregados--;
         }
     }
@@ -136,14 +133,16 @@ function eliminarDato() {
 
 function editarFila() {
     // Obtiene todas las filas de la tabla
-    const rows = document.querySelectorAll('#table_data tr');
+    const rowsAll = document.querySelectorAll('#table_data tr');
     let filaSeleccionada = null;
+    let indiceArray = null;
 
     // Busca la fila seleccionada
-    for (let i = 1; i < rows.length; i++) { // Comienza desde 1 para evitar el encabezado
-        const checkbox = rows[i].querySelector('input[type="checkbox"]');
+    for (let i = 1; i < rowsAll.length; i++) { // Comienza desde 1 para evitar el encabezado
+        const checkbox = rowsAll[i].querySelector('input[type="checkbox"]');
         if (checkbox.checked) {
-            filaSeleccionada = rows[i];
+            filaSeleccionada = rowsAll[i];
+            indiceArray = checkbox.getAttribute("id");
             break;
         }
     }
@@ -160,31 +159,42 @@ function editarFila() {
     // Convierte cada celda en un input editable
     for (let j = 1; j < cells.length; j++) { // Comienza desde 1 para evitar el checkbox
         const cellValue = cells[j].innerText;
-        cells[j].innerHTML = "<input type='text' value='" +cellValue + "' />";
+        cells[j].innerHTML = "<input type='text' value='" + cellValue + "' />";
     }
 
     // Agregar un botón para guardar cambios
     const saveButton = document.createElement("button");
     saveButton.innerText = "Guardar Cambios";
-    saveButton.onclick = () => guardarCambios(filaSeleccionada);
+    saveButton.onclick = () => guardarCambios(filaSeleccionada, indiceArray);
     filaSeleccionada.appendChild(saveButton);
+    document.getElementById("columnaEditar").style.display = "block";
 }
 
-function guardarCambios(filaSeleccionada) {
+function guardarCambios(filaSeleccionada, indice) {
     // Obtiene las celdas de la fila
     const cells = filaSeleccionada.getElementsByTagName("td");
-
-    // Actualiza la fila con los nuevos valores
+    let obj = new Array();
+    // Actualiza la fila y el array con los nuevos valores
     for (let j = 1; j < cells.length; j++) { // Comienza desde 1 para evitar el checkbox
         const input = cells[j].querySelector("input");
         if (input) {
-            cells[j].innerText = input.value; // Guarda el nuevo valor
+            cells[j].innerText = input.value;
+            obj[j - 1] = input.value;
         }
     }
+
+    data[indice].Nombre = obj[0];
+    data[indice].Licencia = obj[1];
+    data[indice].FechaInicio = obj[2];
+    data[indice].FechaFin = obj[3];
+    data[indice].Proveedor = obj[4];
+    data[indice].Empresa = obj[5];
+    data[indice].Responsable = obj[6];
 
     // Remueve el botón de guardar
     const saveButton = filaSeleccionada.querySelector("button");
     if (saveButton) {
         saveButton.remove();
+        document.getElementById("columnaEditar").style.display = "none";
     }
 }

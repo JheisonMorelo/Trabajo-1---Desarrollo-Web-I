@@ -198,3 +198,11 @@ td {
 tr:nth-child(odd) {
     background-color: #cbd1d1;
 }
+
+#columnaEditar {
+    display: none;
+}
+
+#select {
+    width: -11px;
+}
