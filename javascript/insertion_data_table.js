@@ -184,7 +184,7 @@ function editarFila() {
 
 function guardarCambios(filaSeleccionada, indice) {
     // Obtiene las celdas de la fila
-    const cells = $("td");
+    const cells = filaSeleccionada.getElementsByTagName("td");
     let obj = new Array();
     // Actualiza la fila y el array con los nuevos valores
     for (let j = 1; j < cells.length; j++) { // Comienza desde 1 para evitar el checkbox
@@ -202,7 +202,6 @@ function guardarCambios(filaSeleccionada, indice) {
     data[indice].Proveedor = obj[4];
     data[indice].Empresa = obj[5];
     data[indice].Responsable = obj[6];
-    licenciasActivasNoActivas();
     
     // Remueve el botón de guardar
     const saveButton = filaSeleccionada.querySelector("button");
