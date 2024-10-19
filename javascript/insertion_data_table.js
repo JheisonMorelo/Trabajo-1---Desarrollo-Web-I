@@ -46,6 +46,38 @@ const data = [
         "FechaFin": "2022-08-08 09:00",
         "Parther": "CEM",
         "Empresa": "Vmware"
+    },
+    {
+        "Nombre": "HPE",
+        "Estado": "Activa",
+        "FechaInicio": "2022-08-08 08:30",
+        "FechaFin": "2022-08-08 09:00",
+        "Parther": "CEM",
+        "Empresa": "HPE Europa"
+    },
+    {
+        "Nombre": "Vmware",
+        "Estado": "Activa",
+        "FechaInicio": "2022-08-08 08:30",
+        "FechaFin": "2022-08-08 09:00",
+        "Parther": "CEM",
+        "Empresa": "Vmware"
+    },
+    {
+        "Nombre": "HPE",
+        "Estado": "Activa",
+        "FechaInicio": "2022-08-08 08:30",
+        "FechaFin": "2022-08-08 09:00",
+        "Parther": "CEM",
+        "Empresa": "HPE Europa"
+    },
+    {
+        "Nombre": "Vmware",
+        "Estado": "Activa",
+        "FechaInicio": "2022-08-08 08:30",
+        "FechaFin": "2022-08-08 09:00",
+        "Parther": "CEM",
+        "Empresa": "Vmware"
     }
 ];
 
@@ -196,12 +228,11 @@ function guardarCambios(filaSeleccionada, indice) {
     }
     
     data[indice].Nombre = obj[0];
-    data[indice].Licencia = obj[1];
+    data[indice].Estado = obj[1];
     data[indice].FechaInicio = obj[2];
     data[indice].FechaFin = obj[3];
-    data[indice].Proveedor = obj[4];
+    data[indice].Parther = obj[4];
     data[indice].Empresa = obj[5];
-    data[indice].Responsable = obj[6];
     
     // Remueve el botón de guardar
     const saveButton = filaSeleccionada.querySelector("button");
@@ -209,12 +240,13 @@ function guardarCambios(filaSeleccionada, indice) {
         saveButton.remove();
         $('#columnaEditar').css({"display":"none"});
     }
+    licenciasActivasNoActivas();
 }
 
 function licenciasActivasNoActivas() {
     let licenActivas = 0;
     let licenNoActivas = 0;
-    for (let i = 0; i < data.length; i++) {
+    for (let i = 0; i < numDatosAgregados; i++) {
         if (data[i].Estado == "Activa") {
             licenActivas++;
         } else {
