@@ -92,7 +92,7 @@ function insertDataTable(filas) {
 function insertColumns() {
     rows = "";
     rows += "<tr>";
-    rows += "<th><input type='checkbox' onclick='seleccionarTodos()'>Name</th>"
+    rows += "<th><input type='checkbox' onclick='seleccionarTodos()'>Seleccionar</th>"
     rows += "<th>Nombre</th>";
     rows += "<th>Estado</th>";
     rows += "<th>Fecha Inicio</th>";
