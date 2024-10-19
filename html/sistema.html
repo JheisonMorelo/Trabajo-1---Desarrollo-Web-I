@@ -8,6 +8,7 @@
     <link rel="icon" type="image/x-icon" href="../assets/sistema.png">
     <script src="../javascript/options_for_submenus.js"></script>
     <script src="../javascript/insertion_data_table.js"></script>
+    <script src="../javascript/jquery-3.7.1.min.js"></script>
     <title>Sistema Principal</title>
 </head>
 
@@ -60,8 +61,8 @@
             </form>
         </div>
         <br>
-        <p class="p">Licencias activas:</p>
-        <p id="Parrafo" class="p">Licencias vencidas:</p>
+        <p id="Activas" class="p">Licencias activas:</p>
+        <p id="No_Activas" class="p">Licencias vencidas:</p>
         <div class="table_and_options_table">
             <div class="options_table">
                 <button id="BTNagregar" onclick="agregarDatoIndividual()"><img class="IMGagregar" src="../assets/Ícono_signo_mas.png"></button>
@@ -72,7 +73,7 @@
             <div class="table">
                 <table id="table_data">
                     <tr>
-                        <th></th>
+                        <th><input type="checkbox" onchange="seleccionarTodos()">Name</th>
                         <th>Nombre</th>
                         <th>Licencia</th>
                         <th>Fecha Inicio</th>

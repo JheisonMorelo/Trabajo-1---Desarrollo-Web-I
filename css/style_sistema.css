@@ -83,7 +83,6 @@ nav button {
 
 .Barra_lateral select {
     display: block;
-    border: none;
     width: 100%;
     height: 40px;
     padding: 10px;
@@ -186,8 +185,6 @@ table {
 th {
     padding-top: 11px;
     padding-bottom: 11px;
-    background-color: rgb(121, 172, 121);
-    color: white;
 }
 
 td {
@@ -195,9 +192,6 @@ td {
     padding: 11px 50px 11px 8px;
 }
 
-tr:nth-child(odd) {
-    background-color: #cbd1d1;
-}
 
 #columnaEditar {
     display: none;
